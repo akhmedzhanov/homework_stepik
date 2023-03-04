@@ -15,21 +15,22 @@ lst = [
     'Сергей Романов 17.11.1994'
     ]
 b_dates = {}
+birthday_men = {}
+next_week_dates = []
+
+step = 86400 #sec*min*hours
+for d in range(int(now_date.timestamp()), int((now_date + td(days=7)).timestamp()), step):
+    next_week_dates.append(dt.fromtimestamp(d).date())
 
 for i in range(len(lst)):
     f_name, l_name, d = lst[i].split()
-    b_dates[dt.strptime(d, '%d.%m.%Y')] = f'{f_name} {l_name}'
+    new_date = dt.strptime(d, '%d.%m.%Y')
+    b_dates[new_date] = f'{f_name} {l_name}'
+    if date(now_date.year, new_date.month, new_date.day) in next_week_dates or date(now_date.year + 1, new_date.month, new_date.day) in next_week_dates:
+        birthday_men[f'{f_name} {l_name}'] = dt.timestamp(new_date)
 
-next_week_temp = []
-step = 86400 #sec*min*hours
-for d in range(int(now_date.timestamp()), int((now_date + td(days=7)).timestamp()), step):
-    next_week_temp.append(dt.fromtimestamp(d).date())
 
-flag = True
-for d in sorted(b_dates, reverse=True):
-    if date(now_date.year, d.month, d.day) in next_week_temp:
-        print(b_dates[d])
-        flag = False
-        break
-if flag:
+if birthday_men:
+    print(max(birthday_men.items(), key=lambda x: x[1])[0])
+else:
     print('Дни рождения не планируются')
