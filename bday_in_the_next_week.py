@@ -7,13 +7,16 @@
 
 from datetime import datetime as dt, timedelta as td, date
 
-now_date = dt.strptime('14.11.2021', '%d.%m.%Y') + td(days=1)
-n = 3
-lst = [
-    'Иван Петров 16.11.1995',
-    'Петр Сергеев 14.11.1997',
-    'Сергей Романов 17.11.1994'
-    ]
+now_date = dt.strptime(input(), '%d.%m.%Y') + td(days=1)
+#now_date = dt.strptime('14.11.2021', '%d.%m.%Y') + td(days=1)
+n = int(input())
+#n = 3
+lst = [input() for _ in range(n)]
+#lst = [
+#    'Иван Петров 16.11.1995',
+#    'Петр Сергеев 14.11.1997',
+#    'Сергей Романов 17.11.1994'
+#    ]
 b_dates = {}
 birthday_men = {}
 next_week_dates = []
