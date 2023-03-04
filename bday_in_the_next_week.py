@@ -29,7 +29,8 @@ for i in range(len(lst)):
     f_name, l_name, d = lst[i].split()
     new_date = dt.strptime(d, '%d.%m.%Y')
     b_dates[new_date] = f'{f_name} {l_name}'
-    if date(now_date.year, new_date.month, new_date.day) in next_week_dates or date(now_date.year + 1, new_date.month, new_date.day) in next_week_dates:
+    if date(now_date.year, new_date.month, new_date.day) in next_week_dates or\
+       date(now_date.year + 1, new_date.month, new_date.day) in next_week_dates:
         birthday_men[f'{f_name} {l_name}'] = dt.timestamp(new_date)
 
 
